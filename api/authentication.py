@@ -1,21 +1,16 @@
-```python
-from flask_login import UserMixin
-from werkzeug.security import generate_password_hash, check_password_hash
-from api.models import User
+import os
+from flask import request, jsonify
 
-class Authentication(UserMixin):
+API_KEY = os.getenv("API_KEY")
 
-    def __init__(self, username, password):
-        self.username = username
-        self.password = generate_password_hash(password)
+def authenticate_user():
+    if 'Authorization' not in request.headers:
+        return jsonify({"message": "Missing authorization header"}), 401
 
-    def authenticate_user(self, username, password):
-        user = User.query.filter_by(username=username).first()
-        if user and check_password_hash(user.password, password):
-            return user
-        else:
-            return None
+    auth_header = request.headers['Authorization']
+    token = auth_header.split(" ")[1]
 
-    def get_id(self):
-        return self.username
-```
+    if not token or token != API_KEY:
+        return jsonify({"message": "Invalid API key"}), 403
+
+    return None

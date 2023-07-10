@@ -1,21 +1,22 @@
-```python
-from models import User
+import os
+import datetime
 
-def calculateBill(user_id):
-    user = User.query.get(user_id)
-    if user is None:
-        return {"error": "User not found"}
+BILLING_INFO = os.getenv("BILLING_INFO")
 
-    usage = user.usage
-    bill = 0
+def bill_user(user_id, usage):
+    """
+    Function to bill the user based on their usage
+    """
+    rate_per_usage = BILLING_INFO['rate_per_usage']
+    bill_amount = usage * rate_per_usage
 
-    # Define your billing rules here
-    if usage <= 1000:
-        bill = usage * 0.01
-    elif usage <= 10000:
-        bill = usage * 0.005
-    else:
-        bill = usage * 0.001
+    billing_details = {
+        'user_id': user_id,
+        'bill_date': datetime.datetime.now().strftime("%Y-%m-%d"),
+        'usage': usage,
+        'bill_amount': bill_amount
+    }
 
-    return {"bill": bill}
-```
+    # Here, you can add code to update the billing details in your database
+
+    return billing_details

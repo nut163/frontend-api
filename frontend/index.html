@@ -7,14 +7,21 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Welcome to the API Test Website</h1>
-    <form id="api-form">
-        <label for="inputField">Enter Data:</label>
-        <input type="text" id="inputField" name="inputField">
-        <button type="submit" id="submitButton">Submit</button>
+    <h1>API Test Website</h1>
+    <form id="dataForm">
+        <label for="inputField">Data Input:</label><br>
+        <input type="text" id="inputField" name="inputField"><br>
+        <label for="formatSelect">Format Type:</label><br>
+        <select id="formatSelect" name="formatSelect">
+            <option value="json">JSON</option>
+            <option value="xml">XML</option>
+            <!-- Add more options as needed -->
+        </select><br>
+        <input type="submit" id="submitButton" value="Submit">
     </form>
-    <div id="successMessage" class="hidden"></div>
-    <div id="errorMessage" class="hidden"></div>
+    <h2>Converted Data:</h2>
+    <div id="outputField"></div>
+
     <script src="scripts.js"></script>
 </body>
 </html>
