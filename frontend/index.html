@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>API Test Website</h1>
+    <form id="dataForm">
+        <label for="inputField">Data Input:</label><br>
+        <input type="text" id="inputField" name="inputField"><br>
+        <label for="formatSelect">Format Type:</label><br>
+        <select id="formatSelect" name="formatSelect">
+            <option value="json">JSON</option>
+            <option value="xml">XML</option>
+            <!-- Add more options as needed -->
+        </select><br>
+        <input type="submit" id="submitButton" value="Submit">
+    </form>
+    <h2>Converted Data:</h2>
+    <div id="outputField"></div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
